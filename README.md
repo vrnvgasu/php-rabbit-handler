@@ -1,5 +1,7 @@
 # php-rabbit-handler
 
+composer require vrnvgasu/php-rabbit-handler
+
 Look examples in `./Examples`.
 
 ## Connection
