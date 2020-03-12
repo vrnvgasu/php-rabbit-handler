@@ -15,4 +15,6 @@ interface ConsumerInterface
      * @param AMQPMessage $msg
      */
     public function callback(AMQPMessage $msg): void;
+
+    public function startConsumer(): void;
 }
