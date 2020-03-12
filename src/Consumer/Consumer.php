@@ -35,13 +35,23 @@ class Consumer implements ConsumerInterface
     }
 
     /**
-     * @throws \ErrorException
+     * @param bool $startConsumer
      */
-    public function execute(): void
+    public function execute(bool $startConsumer = true): void
     {
         echo " [*] Waiting for messages. To exit press CTRL+C\n";
         $this->consume();
 
+        if ($startConsumer) {
+            $this->startConsumer();
+        }
+    }
+
+    /**
+     *
+     */
+    public function startConsumer(): void
+    {
         while ($this->helper->getConnection()->getChannel()->is_consuming()) {
             $this->helper->getConnection()->getChannel()->wait();
         }
