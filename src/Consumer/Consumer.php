@@ -36,24 +36,35 @@ class Consumer implements ConsumerInterface
 
     /**
      * @param bool $startConsumer
+     * @param array|null $allowed_methods
+     * @param bool $non_blocking
+     * @param int $timeout
+     * @throws \ErrorException
      */
-    public function execute(bool $startConsumer = true): void
-    {
+    public function execute(
+        bool $startConsumer = true,
+        array $allowed_methods = null,
+        bool $non_blocking = false,
+        int $timeout = 0
+    ): void {
         echo " [*] Waiting for messages. To exit press CTRL+C\n";
         $this->consume();
 
         if ($startConsumer) {
-            $this->startConsumer();
+            $this->startConsumer($allowed_methods, $non_blocking, $timeout);
         }
     }
 
     /**
-     *
+     * @param array|null $allowed_methods
+     * @param bool $non_blocking
+     * @param int $timeout
+     * @throws \ErrorException
      */
-    public function startConsumer(): void
+    public function startConsumer(array $allowed_methods = null, bool $non_blocking = false, int $timeout = 0): void
     {
         while ($this->helper->getConnection()->getChannel()->is_consuming()) {
-            $this->helper->getConnection()->getChannel()->wait();
+            $this->helper->getConnection()->getChannel()->wait($allowed_methods, $non_blocking, $timeout);
         }
     }
 
