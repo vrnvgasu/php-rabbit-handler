@@ -79,6 +79,13 @@ Then call method `execute`.
 $consumer->execute();
 ```
 
+If you want to interrupt the execution of the handler after a while, then use:
+```php
+$seconds = 60;
+$consumer->execute(true, null, false, $seconds);
+```
+This will interrupt execution after the specified time after processing the last message.
+
 ## Producing
 Create new publication.
 ```php
