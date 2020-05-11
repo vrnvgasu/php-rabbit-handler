@@ -39,15 +39,19 @@ class Consumer implements ConsumerInterface
      * @param array|null $allowed_methods
      * @param bool $non_blocking
      * @param int $timeout
+     * @param string|null $mode
      * @throws \ErrorException
      */
     public function execute(
         bool $startConsumer = true,
         array $allowed_methods = null,
         bool $non_blocking = false,
-        int $timeout = 0
+        int $timeout = 0,
+        string $mode = null
     ): void {
-        echo " [*] Waiting for messages. To exit press CTRL+C\n";
+        if ($mode === 'console_logging') {
+            echo " [*] Waiting for messages. To exit press CTRL+C\n";
+        }
         $this->consume();
 
         if ($startConsumer) {
