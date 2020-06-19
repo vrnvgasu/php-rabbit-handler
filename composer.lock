@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b0213ac99e3a7571b1ddb1599c009ab",
+    "content-hash": "a4f56f9d3fbd43fa79f776053b590bfa",
     "packages": [
         {
             "name": "php-amqplib/php-amqplib",
-            "version": "v2.11.0",
+            "version": "v2.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "9ee212baced63442ca1ab029acde38e1144a00b8"
+                "reference": "6353c5d2d3021a301914bc6566e695c99cfeb742"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/9ee212baced63442ca1ab029acde38e1144a00b8",
-                "reference": "9ee212baced63442ca1ab029acde38e1144a00b8",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/6353c5d2d3021a301914bc6566e695c99cfeb742",
+                "reference": "6353c5d2d3021a301914bc6566e695c99cfeb742",
                 "shasum": ""
             },
             "require": {
@@ -25,6 +25,9 @@
                 "ext-sockets": "*",
                 "php": ">=5.6.3",
                 "phpseclib/phpseclib": "^2.0.0"
+            },
+            "conflict": {
+                "php": "7.4.0 - 7.4.1"
             },
             "replace": {
                 "videlalvaro/php-amqplib": "self.version"
@@ -56,11 +59,6 @@
                     "role": "Original Maintainer"
                 },
                 {
-                    "name": "John Kelly",
-                    "email": "johnmkelly86@gmail.com",
-                    "role": "Maintainer"
-                },
-                {
                     "name": "Raúl Araya",
                     "email": "nubeiro@gmail.com",
                     "role": "Maintainer"
@@ -68,6 +66,11 @@
                 {
                     "name": "Luke Bakken",
                     "email": "luke@bakken.io",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Ramūnas Dronga",
+                    "email": "github@ramuno.lt",
                     "role": "Maintainer"
                 }
             ],
@@ -78,7 +81,7 @@
                 "queue",
                 "rabbitmq"
             ],
-            "time": "2019-11-19T15:15:19+00:00"
+            "time": "2020-05-13T13:56:11+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -1651,5 +1654,6 @@
     "platform": {
         "php": ">=7.2.0"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
