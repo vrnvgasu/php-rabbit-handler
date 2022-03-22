@@ -10,31 +10,12 @@ use Vrnvgasu\PhpRabbitHandler\Producer\Publication\PublicationInterface;
 class Producer implements ProducerInterface
 {
     /**
-     * @var AMQPHelper
-     */
-    protected $helper;
-    /**
-     * @var PublicationInterface
-     */
-    protected $publication;
-
-    /**
      * Producer constructor.
-     * @param AMQPHelper $helper
-     * @param PublicationInterface $publication
      */
-    public function __construct(
-        AMQPHelper $helper,
-        PublicationInterface $publication
-    ) {
-        $this->helper = $helper;
-        $this->publication = $publication;
+    public function __construct(protected AMQPHelper $helper, protected PublicationInterface $publication)
+    {
     }
 
-    /**
-     * @param JobInterface $job
-     * @return bool
-     */
     public function execute(JobInterface $job): bool
     {
         $this->helper->getConnection()->getChannel()->basic_publish(
@@ -49,12 +30,8 @@ class Producer implements ProducerInterface
         return true;
     }
 
-    /**
-     * @param JobInterface $job
-     * @return AMQPMessage
-     */
     protected function getMsg(JobInterface $job): AMQPMessage
     {
-        return new AMQPMessage(json_encode($job->getPayload()), $this->publication->getProperties());
+        return new AMQPMessage(json_encode($job->getPayload(), JSON_THROW_ON_ERROR), $this->publication->getProperties());
     }
 }

@@ -4,57 +4,41 @@ namespace Vrnvgasu\PhpRabbitHandler\Queue;
 
 class Queue implements QueueInterface
 {
-    /**
-     * @var string
-     */
-    protected $name;
-    /**
-     * @var bool
-     */
-    protected $passive;
-    /**
-     * @var bool
-     */
-    protected $durable;
-    /**
-     * @var bool
-     */
-    protected $exclusive;
-    /**
-     * @var bool
-     */
-    protected $autoDelete;
-    /**
-     * @var bool
-     */
-    protected $nowait;
-    /**
-     * @var array
-     */
-    protected $arguments;
-    /**
-     * @var null|int
-     */
-    protected $ticket;
-
     public function __construct(
-        $name = '',
-        $passive = false,
-        $durable = false,
-        $exclusive = false,
-        $autoDelete = false,
-        $nowait = false,
-        $arguments = [],
-        $ticket = null
-    ) {
-        $this->name = $name;
-        $this->passive = $passive;
-        $this->durable = $durable;
-        $this->exclusive = $exclusive;
-        $this->autoDelete = $autoDelete;
-        $this->nowait = $nowait;
-        $this->arguments = $arguments;
-        $this->ticket = $ticket;
+        /**
+         * @var string
+         */
+        protected $name = '',
+        /**
+         * @var bool
+         */
+        protected $passive = false,
+        /**
+         * @var bool
+         */
+        protected $durable = false,
+        /**
+         * @var bool
+         */
+        protected $exclusive = false,
+        /**
+         * @var bool
+         */
+        protected $autoDelete = false,
+        /**
+         * @var bool
+         */
+        protected $nowait = false,
+        /**
+         * @var array
+         */
+        protected $arguments = [],
+        /**
+         * @var null|int
+         */
+        protected ?int $ticket = null
+    )
+    {
     }
 
     public function getQueueSettings(): array

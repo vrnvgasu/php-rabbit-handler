@@ -10,18 +10,6 @@ use Vrnvgasu\PhpRabbitHandler\Queue\QueueInterface;
 class AMQPHelper
 {
     /**
-     * @var ConnectionInterface
-     */
-    protected $connection;
-    /**
-     * @var QueueInterface
-     */
-    protected $queue;
-    /**
-     * @var ExchangeInterface
-     */
-    protected $exchange;
-    /**
      * @var array
      */
     protected $bindings;
@@ -34,15 +22,11 @@ class AMQPHelper
      * @param $bindings
      */
     public function __construct(
-        ConnectionInterface $connection,
-        QueueInterface $queue,
-        ExchangeInterface $exchange,
+        protected ConnectionInterface $connection,
+        protected QueueInterface $queue,
+        protected ExchangeInterface $exchange,
         $bindings
     ) {
-        $this->connection = $connection;
-        $this->queue = $queue;
-        $this->exchange = $exchange;
-
         $this->bindings = is_array($bindings) ? $bindings : [$bindings];
 
         if ($this->exchange->getName()) {
@@ -59,7 +43,7 @@ class AMQPHelper
             );
         }
 
-        list($queue_name, ,) = $this->connection->getChannel()->queue_declare(
+        [$queue_name, , ] = $this->connection->getChannel()->queue_declare(
             $this->queue->getName(),
             $this->queue->getPassive(),
             $this->queue->getDurable(),
@@ -81,9 +65,6 @@ class AMQPHelper
         $this->registerShutdown();
     }
 
-    /**
-     * @param BindingInterface $binding
-     */
     protected function bind(BindingInterface $binding): void
     {
         $this->connection->getChannel()->queue_bind(
@@ -109,25 +90,16 @@ class AMQPHelper
         }, $channel, $connection);
     }
 
-    /**
-     * @return ConnectionInterface
-     */
     public function getConnection(): ConnectionInterface
     {
         return $this->connection;
     }
 
-    /**
-     * @return QueueInterface
-     */
     public function getQueue(): QueueInterface
     {
         return $this->queue;
     }
 
-    /**
-     * @return ExchangeInterface
-     */
     public function getExchange(): ExchangeInterface
     {
         return $this->exchange;

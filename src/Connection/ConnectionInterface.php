@@ -7,14 +7,8 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 interface ConnectionInterface
 {
-    /**
-     * @return AMQPStreamConnection
-     */
     public function getConnection(): AMQPStreamConnection;
 
-    /**
-     * @return AMQPChannel
-     */
     public function getChannel(): AMQPChannel;
 
     /**

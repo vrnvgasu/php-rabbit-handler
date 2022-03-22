@@ -13,7 +13,6 @@ class Job implements JobInterface
 
     /**
      * @param mixed ...$data
-     * @return JobInterface
      */
     public static function dispatch(...$data): JobInterface
     {
@@ -32,9 +31,6 @@ class Job implements JobInterface
         $this->setPayload($data);
     }
 
-    /**
-     * @param ProducerInterface $producer
-     */
     public function execute(ProducerInterface $producer): void
     {
         $producer->execute($this);

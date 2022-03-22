@@ -5,37 +5,9 @@ namespace Vrnvgasu\PhpRabbitHandler\Consumer\Consume;
 class Consume implements ConsumeInterface
 {
     /**
-     * @var string
-     */
-    protected $consumer_tag;
-    /**
-     * @var bool
-     */
-    protected $no_local;
-    /**
-     * @var bool
-     */
-    protected $no_ack;
-    /**
-     * @var bool
-     */
-    protected $exclusive;
-    /**
-     * @var bool
-     */
-    protected $nowait;
-    /**
      * @var null
      */
     protected $callback;
-    /**
-     * @var null|int
-     */
-    protected $ticket;
-    /**
-     * @var array
-     */
-    protected $arguments;
 
     /**
      * Consume constructor.
@@ -45,32 +17,22 @@ class Consume implements ConsumeInterface
      * @param bool $exclusive
      * @param bool $nowait
      * @param null $callback
-     * @param null $ticket
+     * @param int|null $ticket
      * @param array $arguments
      */
     public function __construct(
-        string $consumer_tag = '',
-        bool $no_local = false,
-        bool $no_ack = false,
-        bool $exclusive = false,
-        bool $nowait = false,
+        protected string $consumer_tag = '',
+        protected bool $no_local = false,
+        protected bool $no_ack = false,
+        protected bool $exclusive = false,
+        protected bool $nowait = false,
         $callback = null,
-        $ticket = null,
-        array $arguments = []
+        protected ?int $ticket = null,
+        protected array $arguments = []
     ) {
-        $this->consumer_tag = $consumer_tag;
-        $this->no_local = $no_local;
-        $this->no_ack = $no_ack;
-        $this->exclusive = $exclusive;
-        $this->nowait = $nowait;
         $this->callback = $callback;
-        $this->ticket = $ticket;
-        $this->arguments = $arguments;
     }
 
-    /**
-     * @return array
-     */
     public function getConsumeSettings(): array
     {
         return [
@@ -85,41 +47,26 @@ class Consume implements ConsumeInterface
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getConsumerTag(): string
     {
         return $this->consumer_tag;
     }
 
-    /**
-     * @return bool
-     */
     public function getNoLocal(): bool
     {
         return $this->no_local;
     }
 
-    /**
-     * @return bool
-     */
     public function getNoAck(): bool
     {
         return $this->no_ack;
     }
 
-    /**
-     * @return bool
-     */
     public function getExclusive(): bool
     {
         return $this->exclusive;
     }
 
-    /**
-     * @return bool
-     */
     public function getNowait(): bool
     {
         return $this->nowait;
@@ -141,9 +88,6 @@ class Consume implements ConsumeInterface
         return $this->ticket;
     }
 
-    /**
-     * @return array
-     */
     public function getArguments(): array
     {
         return $this->arguments;

@@ -8,22 +8,6 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 class Connection implements ConnectionInterface
 {
     /**
-     * @var string
-     */
-    protected $host;
-    /**
-     * @var string
-     */
-    protected $port;
-    /**
-     * @var string
-     */
-    protected $user;
-    /**
-     * @var string
-     */
-    protected $password;
-    /**
      * @var
      */
     protected $connection;
@@ -34,18 +18,9 @@ class Connection implements ConnectionInterface
 
     /**
      * Connection constructor.
-     * @param string $host
-     * @param string $port
-     * @param string $user
-     * @param string $password
      */
-    public function __construct(string $host, string $port, string $user, string $password)
+    public function __construct(protected string $host, protected string $port, protected string $user, protected string $password)
     {
-        $this->host = $host;
-        $this->port = $port;
-        $this->user = $user;
-        $this->password = $password;
-
         $this->openConnection();
     }
 
@@ -64,17 +39,11 @@ class Connection implements ConnectionInterface
         $this->channel = $this->connection->channel();
     }
 
-    /**
-     * @return AMQPStreamConnection
-     */
     public function getConnection(): AMQPStreamConnection
     {
         return $this->connection;
     }
 
-    /**
-     * @return AMQPChannel
-     */
     public function getChannel(): AMQPChannel
     {
         return $this->channel;

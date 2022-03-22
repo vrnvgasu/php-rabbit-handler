@@ -9,25 +9,9 @@ class Publication implements PublicationInterface
      */
     protected $exchange;
     /**
-     * @var string
-     */
-    protected $routing_key;
-    /**
-     * @var bool
-     */
-    protected $mandatory;
-    /**
-     * @var bool
-     */
-    protected $immediate;
-    /**
      * @var null
      */
     protected $ticket;
-    /**
-     * @var array
-     */
-    protected $properties;
     /**
      * @var array
      */
@@ -35,29 +19,18 @@ class Publication implements PublicationInterface
 
     /**
      * Publication constructor.
-     * @param array $properties
-     * @param string $routing_key
-     * @param bool $mandatory
-     * @param bool $immediate
      * @param null $ticket
      */
     public function __construct(
-        array $properties = [],
-        string $routing_key = '',
-        bool $mandatory = false,
-        bool $immediate = false,
+        protected array $properties = [],
+        protected string $routing_key = '',
+        protected bool $mandatory = false,
+        protected bool $immediate = false,
         $ticket = null
     ) {
-        $this->routing_key = $routing_key;
-        $this->mandatory = $mandatory;
-        $this->immediate = $immediate;
         $this->ticket = $ticket;
-        $this->properties = $properties;
     }
 
-    /**
-     * @return array
-     */
     public function getPublicationSettings(): array
     {
         return [
@@ -69,41 +42,26 @@ class Publication implements PublicationInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getProperties(): array
     {
         return $this->properties;
     }
 
-    /**
-     * @return string
-     */
     public function getExchange(): string
     {
         return $this->exchange;
     }
 
-    /**
-     * @return string
-     */
     public function getRoutingKey(): string
     {
         return $this->routing_key;
     }
 
-    /**
-     * @return bool
-     */
     public function getMandatory(): bool
     {
         return $this->mandatory;
     }
 
-    /**
-     * @return bool
-     */
     public function getImmediate(): bool
     {
         return $this->immediate;

@@ -9,29 +9,15 @@ use Vrnvgasu\PhpRabbitHandler\Consumer\Consume\ConsumeInterface;
 class Consumer implements ConsumerInterface
 {
     /**
-     * @var AMQPHelper
-     */
-    protected $helper;
-    /**
-     * @var ConsumeInterface
-     */
-    protected $consume;
-    /**
      * @var null|string
      */
     protected $randomQueue = null;
 
     /**
      * Consumer constructor.
-     * @param AMQPHelper $helper
-     * @param ConsumeInterface $consume
      */
-    public function __construct(
-        AMQPHelper $helper,
-        ConsumeInterface $consume
-    ) {
-        $this->helper = $helper;
-        $this->consume = $consume;
+    public function __construct(protected AMQPHelper $helper, protected ConsumeInterface $consume)
+    {
     }
 
     /**
@@ -40,7 +26,6 @@ class Consumer implements ConsumerInterface
      * @param bool $non_blocking
      * @param int $timeout
      * @param string|null $mode
-     * @throws \ErrorException
      */
     public function execute(
         bool $startConsumer = true,
@@ -63,7 +48,6 @@ class Consumer implements ConsumerInterface
      * @param array|null $allowed_methods
      * @param bool $non_blocking
      * @param int $timeout
-     * @throws \ErrorException
      */
     public function startConsumer(array $allowed_methods = null, bool $non_blocking = false, int $timeout = 0): void
     {
@@ -92,9 +76,6 @@ class Consumer implements ConsumerInterface
         );
     }
 
-    /**
-     * @param AMQPMessage $msg
-     */
     public function callback(AMQPMessage $msg): void
     {
         print_r(' [x] Received ' . $msg->body . "\n");

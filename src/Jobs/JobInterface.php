@@ -8,13 +8,12 @@ interface JobInterface
 {
     /**
      * @param mixed ...$data
-     * @return JobInterface
      */
     public static function dispatch(...$data): self;
 
     /**
-     * @param ProducerInterface|null $producer
-     * @return mixed
+     * @param ProducerInterface $producer
+     * @return void
      */
     public function execute(ProducerInterface $producer): void;
 
