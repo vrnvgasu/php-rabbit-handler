@@ -6,10 +6,6 @@ class Binding implements BindingInterface
 {
     /**
      * Binding constructor.
-     * @param string $routing_key
-     * @param bool $nowait
-     * @param array $arguments
-     * @param int|null $ticket
      */
     public function __construct(protected string $routing_key = '', protected bool $nowait = false, protected array $arguments = [], protected ?int $ticket = null)
     {

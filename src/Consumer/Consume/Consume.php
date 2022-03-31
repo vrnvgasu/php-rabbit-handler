@@ -11,14 +11,7 @@ class Consume implements ConsumeInterface
 
     /**
      * Consume constructor.
-     * @param string $consumer_tag
-     * @param bool $no_local
-     * @param bool $no_ack
-     * @param bool $exclusive
-     * @param bool $nowait
      * @param null $callback
-     * @param int|null $ticket
-     * @param array $arguments
      */
     public function __construct(
         protected string $consumer_tag = '',

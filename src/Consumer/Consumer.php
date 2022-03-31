@@ -21,10 +21,7 @@ class Consumer implements ConsumerInterface
     }
 
     /**
-     * @param bool $startConsumer
      * @param array|null $allowed_methods
-     * @param bool $non_blocking
-     * @param int $timeout
      * @param string|null $mode
      */
     public function execute(
@@ -46,8 +43,6 @@ class Consumer implements ConsumerInterface
 
     /**
      * @param array|null $allowed_methods
-     * @param bool $non_blocking
-     * @param int $timeout
      */
     public function startConsumer(array $allowed_methods = null, bool $non_blocking = false, int $timeout = 0): void
     {

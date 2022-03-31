@@ -38,7 +38,6 @@ class Job implements JobInterface
 
     /**
      * @param $payload
-     * @return JobInterface
      */
     public function setPayload($payload): JobInterface
     {

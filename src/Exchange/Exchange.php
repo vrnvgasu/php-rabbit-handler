@@ -14,7 +14,6 @@ class Exchange implements ExchangeInterface
      * @param bool $internal
      * @param bool $nowait
      * @param array $arguments
-     * @param int|null $ticket
      */
     public function __construct(protected $name = '', protected $type = '', protected $passive = false, protected $durable = true, protected $autoDelete = false, protected $internal = false, protected $nowait = false, protected $arguments = [], protected ?int $ticket = null)
     {

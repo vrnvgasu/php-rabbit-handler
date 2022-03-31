@@ -11,10 +11,6 @@ interface JobInterface
      */
     public static function dispatch(...$data): self;
 
-    /**
-     * @param ProducerInterface $producer
-     * @return void
-     */
     public function execute(ProducerInterface $producer): void;
 
     /**

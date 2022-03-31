@@ -16,9 +16,6 @@ class AMQPHelper
 
     /**
      * AMQPHelper constructor.
-     * @param ConnectionInterface $connection
-     * @param QueueInterface $queue
-     * @param ExchangeInterface $exchange
      * @param $bindings
      */
     public function __construct(
