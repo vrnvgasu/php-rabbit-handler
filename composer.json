@@ -8,6 +8,7 @@
     "php": ">=8.0",
     "php-amqplib/php-amqplib": ">=3.2"
   },
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Dmitrii",
